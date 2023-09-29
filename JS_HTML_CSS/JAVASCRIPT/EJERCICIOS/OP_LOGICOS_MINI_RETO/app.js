@@ -6,10 +6,10 @@ let planet;
 planet = 'Tierra';
 
 let isInnerPlanet;
-isInnerPlanet = false;
+isInnerPlanet = true;
 
 let hasAtmosphere;
-hasAtmosphere = false;
+hasAtmosphere = true;
 
 let isHabitable = isInnerPlanet && hasAtmosphere; //! || or
 console.log(isHabitable)
