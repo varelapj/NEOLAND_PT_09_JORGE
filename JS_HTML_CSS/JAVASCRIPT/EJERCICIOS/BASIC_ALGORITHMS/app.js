@@ -157,3 +157,4 @@ let batman= {
 let key = Object.keys(batman);
 console.log(key);
 //Retorna ["nombre", "apellidos", "localizacion", "profesion"]
+const clave = []
