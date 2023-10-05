@@ -119,3 +119,41 @@ if (number3*5 === number1) {
 if (number2/2 === number1 || number1/5 ===number3) {
 console.log("number2 entre 2 es igual a number1 O number1 entre 5 es igual a number3");
 }
+
+let age1= 19;
+let accessAllowed = (age1 > 18) ? true : false
+console.log ( accessAllowed);
+
+
+
+
+function pokemonAttack() {
+  console.log( '¡Pikachu Impact Trueno!');
+}
+
+function pokemonAttackParams(name , attack="Ascuas") {
+  console.log(`¡${name} ${attack}! `);
+}
+
+
+pokemonAttack();
+pokemonAttackParams('Ascuas');
+pokemonAttackParams('Squirtel', 'Pistola de agua');
+
+let saludo ;
+saludo = "Buenos días";
+console.log(saludo)
+
+
+
+
+let batman= {
+    nombre: "Bruce",
+    apellidos: "Wayne", 
+    localizacion: "Gotham",
+    profesion: "Multimillonario"
+}
+
+let key = Object.keys(batman);
+console.log(key);
+//Retorna ["nombre", "apellidos", "localizacion", "profesion"]
