@@ -8,7 +8,7 @@ return numberOne < numberTwo ? numberTwo : numberOne
 
 sum(1,2)
 
-console.log(sum(1,2))
+console.log(sum(7,2))
 
 
 //! ITERACIÓN 2
@@ -115,33 +115,16 @@ const duplicates = [
 //comprobar que existe dentro de dicho array - comprueba si existe el elemento, en caso de que
 // existan nos devuelve un true y la posición de dicho elemento y 
 //por la contra un false. 
-const counterWords = [
-  'code',
-  'repeat',
-  'eat',
-  'sleep',
-  'code',
-  'enjoy',
-  'sleep',
-  'code',
-  'enjoy',
-  'upgrade',
-  'code'
-  ];
-  //let palabra = 'code'
-  //let condicion = counterWords.includes(palabra)
+const counterWords = ['code','repeat','eat','sleep','code','enjoy','sleep','code','enjoy','upgrade','code'
+];
 
   function repeatCounter(param,palabra) {
     param.includes(palabra)?
-    console.log(`${param.includes(palabra)}`):
-    console.log( param.includes(palabra))
+    console.log(`${param.includes(palabra)} ${param.indexOf(palabra)}`):
+    console.log("false")
   }
 
-repeatCounter(counterWords,'code')
-
-const prueba = {
-  
-}
+repeatCounter(counterWords,'eat')
 
 
 
