@@ -3,7 +3,7 @@
 // array que incluyan la palabra "Camiseta". Usa la función .includes de javascript.
 
 const products = ['Camiseta de Pokemon', 'Pantalón coquinero', 'Gorra de gansta', 
-'Camiseta de Basket', 'Cinrurón de Orión', 'AC/DC Camiseta']
+'Camiseta de Basket', 'Cinrurón de Orión', 'AC/DC Camiseta']/*
 const string = 'Camiseta'
 
 const pantalla = products.filter(a => a.includes(string));
@@ -15,10 +15,26 @@ console.log(pantalla);
 
 function findArray (param, string2) {
     for(a=0; a < param.length ; a++ ){
-j = products.filter(k => k.includes(string2));
+j = param.filter(k => k.includes(string2));
 console.log(j)
 }}
-findArray(products,'Camiseta')
+findArray(products,'Camiseta')*/
+
+//Métdodo 3 ??? 
+
+function encuentraArray (param, string2) {
+/*for(a=0; a < param.length ; a++ ){
+j = param.filter(k => k.includes(string2));
+console.log(j)
+}*/
+for (let palabras of param){
+    if(palabras.includes(string2))
+    {console.log(palabras)}
+
+}
+}
+encuentraArray(products,'Camiseta')
+
 
 //! ITERACIÓN 2
 //Comprueba en cada uno de los usuarios que tenga al menos dos trimestres 
@@ -79,11 +95,11 @@ console.log(alumns)
 //Metodo 2
 function condicion5 (param){
 for (f=0;f<param.length;f++){
-(param[f].T1==true && param[f].T2==true) ?
+(param[f].T1 && param[f].T2) ?
 param[f].isApproved= "true":
-(param[f].T2==true && param[f].T3==true)?
+(param[f].T2 && param[f].T3)?
 param[f].isApproved= "true":
-(param[f].T1==true && param[f].T3==true)?
+(param[f].T1 && param[f].T3)?
 param[f].isApproved= "true":
 param[f].isApproved= "false";
 
@@ -93,7 +109,7 @@ console.log(alumns)
 
 
 //! ITERACIÓN 3
-//Usa un bucle forof para recorrer todos los destinos del array. 
+//Usa un bucle for of para recorrer todos los destinos del array. 
 //Imprime en un console.log sus valores.
 const placesToTravel = ['Japon', 'Venecia', 'Murcia', 'Santander', 'Filipinas', 'Madagascar']
 
@@ -132,7 +148,7 @@ const placesToTravel2 =
 {id: 44, name: 'Filipinas'},
 {id: 59, name: 'Madagascar'}]
 
-function eliminaDestino (param,id1,id2){
+/*function eliminaDestino (param,id1,id2){
 let t = []; let e=[]
     {
        for(let o = 0; o < param.length; o++) {
@@ -150,22 +166,24 @@ let t = []; let e=[]
   for (const g of  eliminaDestino(placesToTravel2,11,40).reverse()) {
     placesToTravel2.splice(g, 1);
   }
-   console.log(placesToTravel2)
+   console.log(placesToTravel2)*/
+   for (let aa = 0; aa<placesToTravel2.length; aa++){
+    console.log(aa)
+ if(placesToTravel2[aa].id==11 || placesToTravel2[aa].id==40 ) {
+ placesToTravel2.splice(aa,1)}
+}
 
-
+console.log(placesToTravel2)
 //! ITERACIÓN 6
 //Usa un bucle for...of para recorrer todos los juguetes y elimina los que incluyan la 
 //palabra gato. Recuerda que puedes usar la función .includes() para comprobarlo.
-const toys = [
+/*const toys = [
     {id: 5, name: 'Buzz MyYear'}, 
     {id: 11, name: 'Action Woman'}, 
     {id: 23, name: 'Barbie Man'}, 
     {id: 40, name: 'El gato con Guantes'},
     {id: 40, name: 'El gato felix'}
     ]
-    
-
-
 
 function findArray3 (param, string3) {
     for(a=0; a < param.length ; a++ ){
@@ -186,4 +204,4 @@ const toys2 = [
 	{id: 23, name: 'Barbie Man', sellCount: 15}, 
 	{id: 40, name: 'El gato con Guantes', sellCount: 8},
 	{id: 40, name: 'El gato felix', sellCount: 35}
-]
+]*/
