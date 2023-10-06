@@ -115,16 +115,32 @@ const duplicates = [
 //comprobar que existe dentro de dicho array - comprueba si existe el elemento, en caso de que
 // existan nos devuelve un true y la posición de dicho elemento y 
 //por la contra un false. 
-const counterWords = ['code','repeat','eat','sleep','code','enjoy','sleep','code','enjoy','upgrade','code'
+const nameFinder = ['code','repeat','eat','sleep','code','enjoy','sleep','code','enjoy','upgrade','code'
 ];
 
-  function repeatCounter(param,palabra) {
+  function finderName(param,palabra) {
     param.includes(palabra)?
     console.log(`${param.includes(palabra)} ${param.indexOf(palabra)}`):
     console.log("false")
   }
 
-repeatCounter(counterWords,'eat')
+finderName(nameFinder,'eat')
+
+//! ITERACIÓN 8
+//Crea una función que nos devuelva el
+// número de veces que se repite cada una de las palabras que lo conforma. 
+
+const counterWords = ['code','repeat','eat','sleep','code','enjoy','sleep','code','enjoy','upgrade','code'];
+const count = {};
+
+counterWords.forEach(param => {
+
+  count[param] = (count[param] || 0) + 1;
+
+});
+
+
+console.log(count);
 
 
 
