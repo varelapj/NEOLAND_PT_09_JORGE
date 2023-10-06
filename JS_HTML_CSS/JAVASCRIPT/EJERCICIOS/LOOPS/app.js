@@ -132,26 +132,25 @@ const placesToTravel2 =
 {id: 44, name: 'Filipinas'},
 {id: 59, name: 'Madagascar'}]
 
-function eliminaDestino (param,numero1,numero2){
+function eliminaDestino (param,id1,id2){
+let t = []; let e=[]
+    {
+       for(let o = 0; o < param.length; o++) {
+           let obj = param[o];
+           if(obj.id == id1) {
+            t=  o} else if 
+            (obj.id == id2) {
+                 e=  o}
+           }   return [t,e]
+         }
+   
+     }
 
- {
-    for(let o = 0; o < param.length; o++) {
-        let obj = param[o];
-        if(obj.id == numero2 || obj.id == numero1) {
-          return o;
-        }
-      }
-     return -1;
   
-
-  }}
-
-
-let s = eliminaDestino(placesToTravel2,11)
-console.log(s)
-placesToTravel2.splice(s, 1);
-console.log(placesToTravel2)
-
+  for (const g of  eliminaDestino(placesToTravel2,11,40).reverse()) {
+    placesToTravel2.splice(g, 1);
+  }
+   console.log(placesToTravel2)
 
 
 //! ITERACIÓN 6
@@ -164,6 +163,18 @@ const toys = [
     {id: 40, name: 'El gato con Guantes'},
     {id: 40, name: 'El gato felix'}
     ]
+    
+
+
+
+function findArray3 (param, string3) {
+    for(a=0; a < param.length ; a++ ){
+j = products.filter(k => k.includes(string2));
+console.log(j)
+}}
+findArray3(toys,'gato')
+   
+
 
 //! ITERACIÓN 7
 //Usa un bucle for...of para recorrer todos los juguetes y añade los que tengan más 
