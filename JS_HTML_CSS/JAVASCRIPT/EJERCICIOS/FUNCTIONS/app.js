@@ -10,6 +10,17 @@ sum(1,2)
 
 console.log(sum(7,2))
 
+//metodo 2
+sum2 = (numberOne , numberTwo)   => 
+{return numberOne < numberTwo ? numberTwo : numberOne
+}
+
+  sum2(1,2)
+  
+  console.log(sum2(7,2))
+
+
+
 
 //! ITERACIÓN 2
 //Completa la función que tomando un array de strings como argumento devuelva el 
@@ -136,11 +147,32 @@ const count = {};
 counterWords.forEach(param => {
 
   count[param] = (count[param] || 0) + 1;
-
+  ;
 });
-
 
 console.log(count);
 
 
+
+
+var array = [4,1,2,1,1,3,45,13,42,52,45,25,13,40,13,2];
+
+var repetidos = {};
+
+array.forEach(function(numero){
+  repetidos[numero] = (repetidos[numero] || 0) + 1;
+});
+
+console.log(repetidos);
+
+const nh = [array.forEach]
+console.log(nh)
+
+//for (let i = 0; i < 2; i++) {
+ // console.log (avengers)
+//}
+
+avengers.forEach((element)=>{
+  console.log (array)
+})
 
