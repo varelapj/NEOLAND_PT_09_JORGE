@@ -16,6 +16,17 @@ function sum (numberOne , numberTwo)   {
       sum2(1,2)
       
       console.log(sum2(7,2))
+
+
+//METODO 3 SIN RETURN Y SIN LLAVES, PORQUE RETURN SIN LLAVES NO FUNCIONA Y LLAVES
+//SIN RETURN TAMPOCO
+    sum2 = (numberOne , numberTwo)   => 
+    (numberOne < numberTwo) ? numberTwo : numberOne
+     
+     
+       sum2(1,2)
+       
+       console.log(sum2(7,2))
       
 //! FUNCION FOR BUCLE => PERO NO ES FUNCIÓN?
 
