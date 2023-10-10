@@ -42,7 +42,7 @@ for (let i = 0; i<param.length;i++){
 
 miFuncion(array1)
 //! --------------------------------------------------------------
-console.log("BUCLE")
+/*console.log("BUCLE")
 
 array1.forEach()
 
@@ -51,7 +51,7 @@ array1.forEach((element)=>{
     console.log (element)
   })
 
-  console.log("BUCLE")
+  console.log("BUCLE")*/
 
 //! --------------------------------------------------------------
   console.log("miFuncion2")
