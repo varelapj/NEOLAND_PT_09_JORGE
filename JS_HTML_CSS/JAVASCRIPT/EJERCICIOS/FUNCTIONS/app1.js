@@ -6,27 +6,27 @@ function sum (numberOne , numberTwo)   {
     
     sum(1,2)
     
-    console.log(sum(7,2))
+    console.log(sum(1,2))
     
 //metodo 2
-    sum2 = (numberOne , numberTwo)   => 
+    const sum2 = (numberOne , numberTwo)   => 
     {return numberOne < numberTwo ? numberTwo : numberOne
     }
     
       sum2(1,2)
       
-      console.log(sum2(7,2))
+      console.log(sum2(1,2))
 
 
 //METODO 3 SIN RETURN Y SIN LLAVES, PORQUE RETURN SIN LLAVES NO FUNCIONA Y LLAVES
 //SIN RETURN TAMPOCO
-    sum2 = (numberOne , numberTwo)   => 
+    const sum3 = (numberOne , numberTwo)   => 
     (numberOne < numberTwo) ? numberTwo : numberOne
      
      
-       sum2(1,2)
+       sum3(1,2)
        
-       console.log(sum2(7,2))
+       console.log(sum3(7,2))
       
 //! FUNCION FOR BUCLE => PERO NO ES FUNCIÓN?
 
@@ -44,9 +44,14 @@ miFuncion(array1)
 //! --------------------------------------------------------------
 console.log("BUCLE")
 
+array1.forEach()
+
+
 array1.forEach((element)=>{
-    console.log (array1)
+    console.log (element)
   })
+
+  console.log("BUCLE")
 
 //! --------------------------------------------------------------
   console.log("miFuncion2")
@@ -59,11 +64,36 @@ array1.forEach((element)=>{
 //! --------------------------------------------------------------
     console.log("miFuncion3")
 
-     miFuncion3 = (param) => {param.forEach((element)=>{
-        console.log (param)
+     const miFuncion3 = (param) => {param.forEach((element)=>{
+        console.log (element)
       })}
       miFuncion3(array1)
 
 
 //! DIFERENTES COMPARADORES
 //! MISMAS ACCIONES
+
+const animalesRepetidos =
+["perro","gato","periquito","pez","perro","gato","perro","periquito","pez"];
+const recuentoDos = []; //da igual no incializarla porque cuando hace acc++ la pone a cero
+
+animalesRepetidos.forEach((element) => {
+let acc = [] ; 
+
+recuentoDos.forEach((especie)=>{
+if(element == especie.palabra) acc++;})
+
+if (acc==0){
+  acc= 0;
+  animalesRepetidos.forEach((item)=>{
+  if(element == item) acc++; })
+
+  recuentoDos.push({palabra: element, repeticiones: acc})
+  }
+})
+
+console.log(recuentoDos)
+
+//! -------------------------------------------
+
+
