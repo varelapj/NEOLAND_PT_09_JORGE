@@ -2,7 +2,7 @@
 
 // Completa la función que tomando dos números como argumento devuelva el más alto.
 function sum (numberOne , numberTwo)   {
-return numberOne < numberTwo ? numberTwo : numberOne
+return (numberOne < numberTwo) ? numberTwo : numberOne
 
 }
 
@@ -30,7 +30,7 @@ const avengers = ['Hulk', 'Thor', 'IronMan', 'Captain A.', 'Spiderman', 'Captain
 
 function findLongestWord(param) {
 let lgth = 0;
-let longest;
+let longest="";
 
 for (let i = 0; i < param.length; i++) {
   if (param[i].length > lgth) {
@@ -77,25 +77,25 @@ function average(paramAvg) {
 
 const mixedElements = [6, 1, 'Rayo', 1, 'vallecano', '10', 'upgrade', 8, 'hub'];
 
-function sumMixedElements(param) 
-{
-  const nuevoArray=[];
-  for (var i = 0; i < param.length; i++) {
+function sumMixedElements  (param) {
 
-    return 
-     let respuesta = (typeof param[i] == "number") ?
-   nuevoArray.push (param[i]):
+const nuevoArray =[];
+for (var i = 0 ; i < param.length ; i++){
+(typeof param[i] == "number")?
+nuevoArray.push(param[i]):
+nuevoArray.push(param[i].length)
 
-    (typeof param[i] == "string") ?
-    nuevoArray.push (param[i].length):
+}
 
-    nuevoArray
-   }
-   let totalMixed=0;
-   for(let k of nuevoArray) totalMixed+=k
-   console.log (totalMixed)
-} 
-sumMixedElements(mixedElements)
+let totalMixed=0;
+for(let k of nuevoArray ) {
+  totalMixed+=k;
+  
+}
+console.log(totalMixed)
+}
+
+sumMixedElements(mixedElements);
 
 
 
@@ -117,7 +117,9 @@ const duplicates = [
   ];
   
   function removeDuplicates(param)  {
-  return param.filter((value,index)=>param.indexOf(value) === index);
+  return param.filter(
+    (value,index)=>param.indexOf(value) === index
+    );
   }
   console.log(removeDuplicates(duplicates));
 

@@ -7,7 +7,7 @@ animalesRepetidos.forEach((element) => {
 let acc =  []; 
 
 recuentoDos.forEach((especie)=>{
-if(element == especie.palabra) acc=87;})
+if(element == especie.palabra) acc++;})
 
 if (acc==0){
   acc= 0;
