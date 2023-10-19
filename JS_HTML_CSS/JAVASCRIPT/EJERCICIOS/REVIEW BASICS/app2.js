@@ -38,22 +38,27 @@ const users = [
 const sonidosFavoritos =[]
 const sonidosFavoritosTotal = 0
 
-let sumaSonidos = (param) => 
+const sumaSonidos = (param) => 
 {
+    let sumaTotal = 0
+    let cont = 0
+    let  sonidosFavoritosTotal=[]
 for (let valor of param) {
 
-   sonidosFavoritos.push(users[1].favoritesSounds)
+   sonidosFavoritos.push(valor.favoritesSounds)
 
 }
 for (let valor2 in sonidosFavoritos) {
     let sonidosFavoritos2 =sonidosFavoritos[valor2]
     for(let valor3 in sonidosFavoritos2){
        let  sonidosFavoritosTotal=[(sonidosFavoritos2[valor3].volume)]
-       let sumaTotal = 0
+      
        for(let k of sonidosFavoritosTotal) {
-        sumaTotal+=k}    console.log(sumaTotal) 
+        sumaTotal+=k;
+        cont++
     }   
-} 
+    }   
+} console.log(sumaTotal/cont) 
 }
 
 

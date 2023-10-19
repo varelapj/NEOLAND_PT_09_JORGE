@@ -122,7 +122,7 @@ const duplicates = [
     );
   }
   console.log(removeDuplicates(duplicates));
-
+ 
 //! ITERACIÓN 7
 //Crea una función que reciba por parámetro un array y el valor que desea 
 //comprobar que existe dentro de dicho array - comprueba si existe el elemento, en caso de que
