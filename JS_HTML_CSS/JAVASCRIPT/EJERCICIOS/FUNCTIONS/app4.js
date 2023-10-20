@@ -16,10 +16,10 @@ nuevoArray.push(param[i].length)
 
 let totalMixed=0;
 for(let k of nuevoArray ) {
-  totalMixed+=k;
-  
-}
-console.log(totalMixed)
+  totalMixed+=k
+
+}console.log(totalMixed/mixedElements.length)
+
 }
 
 sumMixedElements(mixedElements);

@@ -89,8 +89,8 @@ nuevoArray.push(param[i].length)
 
 let totalMixed=0;
 for(let k of nuevoArray ) {
-  totalMixed+=k;
-  
+  totalMixed+=k
+
 }
 console.log(totalMixed)
 }
