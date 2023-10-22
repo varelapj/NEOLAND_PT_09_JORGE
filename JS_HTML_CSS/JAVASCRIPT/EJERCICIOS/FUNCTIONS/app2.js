@@ -1,6 +1,8 @@
 
 const animalesRepetidos =
 ["perro","gato","periquito","pez","perro","gato","perro","periquito","pez"];
+
+
 const recuentoDos = []; //da igual no incializarla porque cuando hace acc++ la pone a cero
 
 animalesRepetidos.forEach((element) => {
