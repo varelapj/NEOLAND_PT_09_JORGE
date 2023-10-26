@@ -93,8 +93,10 @@ alumns[4].isApproved= "false";
 console.log(alumns)
 
 //Metodo 2
-function condicion5 (param){
-for (f=0;f<param.length;f++){
+condicion5 = (param) =>
+{
+for (let f=0;f<param.length;f++)
+{
 (param[f].T1 && param[f].T2) ?
 param[f].isApproved= "true":
 (param[f].T2 && param[f].T3)?
@@ -103,7 +105,8 @@ param[f].isApproved= "true":
 param[f].isApproved= "true":
 param[f].isApproved= "false";
 
-}}
+}
+}
 condicion5(alumns)
 console.log(alumns)
 
