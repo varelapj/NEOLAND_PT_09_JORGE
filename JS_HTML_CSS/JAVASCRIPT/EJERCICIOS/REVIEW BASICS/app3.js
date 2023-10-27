@@ -45,12 +45,15 @@ let sonidosFavoritos = (param)=> {
 
     for (let valor1 of param) {
         let sonidos = valor1.favoritesSounds;
+        console.log(valor1)
        // console.log(sonidos)
        for(let valor2 in sonidos){
            let sonidosLista = [valor2];
           // console.log(sonidosLista)
+          console.log(valor2)
           for(let valor3 of sonidosLista )
           {
+            console.log(valor3)
             arrayDeSonidos.push(valor3);
           }
        }   
