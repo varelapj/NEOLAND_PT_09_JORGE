@@ -34,10 +34,11 @@ const cities = [
 
 const ciudades = cities.map(city => {
 
-    (city.isVisited===true)?
-    console.log(`${city.name} (Visitado)`):
-    console.log(city.name)
+    return (city.isVisited===true)?
+    (`${city.name} (Visitado)`):
+    (city.name)
 })
 
+console.log(ciudades)
 
 /*template string const ciudades = cities.map(city => `${city.name} (Visitado)`)*/
