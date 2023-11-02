@@ -39,21 +39,19 @@ Este ejercicio es un poco complicado con los conocimientos actuales pero...a la 
         }
     },
 ]
-
+/*
 let arrayDeSonidos =[]
 let sonidosFavoritos = (param)=> {
 
     for (let valor1 of param) {
         let sonidos = valor1.favoritesSounds;
-        console.log(valor1)
+        
        // console.log(sonidos)
        for(let valor2 in sonidos){
            let sonidosLista = [valor2];
           // console.log(sonidosLista)
-          console.log(valor2)
           for(let valor3 of sonidosLista )
           {
-            console.log(valor3)
             arrayDeSonidos.push(valor3);
           }
        }   
@@ -77,6 +75,40 @@ if (acc==0){
 
   recuentoDos.push({favorito: element, repeticiones: acc})
   }
+})
+
+console.log(recuentoDos)
+*/
+
+let sonidosFavoritos = []
+
+for (let bucle1  of users){
+    const {favoritesSounds} = bucle1
+
+for( let bucle2 in favoritesSounds){
+sonidosFavoritos.push(bucle2)
+
+}}
+
+
+const recuentoDos = [];
+
+sonidosFavoritos.forEach((element) => {
+let acc = 0; 
+
+recuentoDos.forEach((sonido)=>{
+if(element == sonido.favorito) 
+
+acc++})
+
+if (acc==0){
+sonidosFavoritos.forEach((item)=>{
+if(element == item) 
+
+acc++; })
+
+recuentoDos.push({favorito: element, repeticiones: acc})
+}
 })
 
 console.log(recuentoDos)
