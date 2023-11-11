@@ -8,3 +8,102 @@
     width: 100vw;
     min-height: 100vh;
   }
+  
+
+body header img{
+padding-left:300px;
+padding-right:300px;  
+padding-top:25px;
+padding-bottom:25px;
+height:120px;
+background-color: orange;
+  color: whitesmoke;
+
+
+}
+
+body header{
+  background-color: orange;
+}
+
+body header {
+  align-self: center;
+}
+#skills h2{
+  color:cornflowerblue;
+  padding:20px
+}
+
+footer{
+  padding:20px;
+  background-color: cornflowerblue;
+  color: whitesmoke;
+}
+
+.textfooter{
+  text-align:center
+}
+
+#about img{
+  height:150px;
+  display:  center;
+}
+
+.container{
+  text-align: center;
+}
+
+#about h2{
+  color:cornflowerblue;
+  padding:20px
+}
+
+#skills  li{
+  background-color: orange;
+  border-radius:20px;
+  margin:20px;
+  list-style: none;
+  color:white;
+  padding:10px;
+  display: inline-block;
+}
+
+#enlaces{
+  background-color: orange;
+  text-align: center;
+}
+
+#enlaces ul li {
+  background-color: orange;
+
+display:inline-block;
+padding-left: 150px;
+padding-top:20px;
+padding-bottom:20px;
+padding-right: 150px;
+}
+
+#enlaces ul li a {
+color:white;
+}
+
+
+#enlaces ul li a:hover {
+  background-color: cornflowerblue;
+  padding:20px;
+  border-radius: 20px;
+  }
+  
+  #enlaces ul li a:active{
+    background-color: cornflowerblue;
+    padding:20px;
+    border-radius: 20px;
+    }
+    
+    #enlaces ul li a:visited{
+      background-color: cornflowerblue;
+      padding:20px;
+      border-radius: 20px;
+      }
+      
+    
