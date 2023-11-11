@@ -5,7 +5,18 @@ las etiquetas correspondientes tal y como hemos visto en el ejemplo:
 - La etiqueta h1 tiene que tener un color “white”.
 - La etiqueta li tiene que tener un color “whitesmoke”.
 - La etiqueta body tiene que tener un color de fondo “rgb(52, 52, 52)”.*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    width: 100vw;
+    min-height: 100vh;
+  }
 
+  
 p {
     color:skyblue
 }

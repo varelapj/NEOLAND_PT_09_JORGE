@@ -2,6 +2,17 @@
 
 Una vez realizada la primera importación, crear una font-face con la siguiente fuente llamada “Bergdool” 
 y aplicarla a los h1 y h2 del documento.*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  width: 100vw;
+  min-height: 100vh;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 
 @font-face {

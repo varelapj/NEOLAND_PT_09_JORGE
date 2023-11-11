@@ -10,13 +10,16 @@
 - Los h3 deben de tener también el font-style: italic.
 - La imagen debe de tener un border-radius de 1 rem.*/
 
-*{
-    padding:0%;
-    margin:0%;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-
-}
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    width: 100vw;
+    min-height: 100vh;
+  }
 body{
     background-color: lightcyan;
 }

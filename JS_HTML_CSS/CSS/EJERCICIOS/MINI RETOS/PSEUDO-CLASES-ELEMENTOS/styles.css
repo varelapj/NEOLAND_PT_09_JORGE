@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    width: 100vw;
+    min-height: 100vh;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  header {
+    background-image: url(https://lumiere-a.akamaihd.net/v1/images/pp_xmen1992_herobanner_21369_2ead90c7.jpeg?region=0,0,2048,878);
+    background-size: cover;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  header h1 {
+    color: white;
+    text-align: center;
+    font-size: 2em;
+  }
+  
+  nav {
+    background-color: #333;
+  }
+  
+  nav ul {
+    display: flex;
+    list-style: none;
+  }
+  
+  nav li {
+    flex: 1;
+    text-align: center;
+  }
+  
+  nav a {
+    display: block;
+    padding: 20px 0;
+    color: white;
+    text-decoration: none;
+  }
+  
+  /*HOVER Y FOCUS AL NAV */
+  nav li:hover {
+    flex: 1;
+    text-align: center;
+    background-color: lightgrey;
+  }
+  nav li:focus {
+    flex: 1;
+    text-align: center;
+    background-color: lightgrey;
+  }
+
+  main {
+    padding: 20px;
+  }
+  
+  section {
+    margin-bottom: 20px;
+  }
+  
+  section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  section ul {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  section li {
+    margin: 0 10px;
+    list-style-type: none;
+  }
+  
+  section a:active{
+      color: purple;
+
+  }
+
+
+
+section li:focus{
+    border-width: 100px;
+    border-color: purple;
+}
+
+  /* SUSITUIR EL PUNTO DE LA LISTA POR LA X */
+  
+  section a::first-letter {
+    content: "🅧";
+    padding-left: 5px;
+    color: orange;
+  }
+  
+  /* AÑADIR CORCHETES A LOS ENLACES */
+  section a::before{content: "["}
+  section a::after{content: "]"}
+
+  /* AÑADIR HOVER A LOS ENLACES */
+  section a:hover{
+    color: red;
+ 
+}
+
+  /* AÑADIR FOCUS A LOS ENLACES */
+
+  
+  section a:focus{
+    color: purple;
+    border-color: purple;
+    border-width: 100px;
+    border-color: purple;
+}
+  footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  footer p {
+    margin: 0;
+    font-size: 0.8em;
+  }
