@@ -1,0 +1,22 @@
+/*Importa en la hoja de estilos la fuente “Open Sans” de Google Fonts y aplícale a los párrafos dicha fuente.
+
+Una vez realizada la primera importación, crear una font-face con la siguiente fuente llamada “Bergdool” 
+y aplicarla a los h1 y h2 del documento.*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+@font-face {
+    font-family: 'Bergdool';
+    src: 
+              local("Bergdool"),
+              url("./assets/Bergdool.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  p{
+    font-family: 'Bergdool'
+  }
+/*
+  * {
+    font-family: "Roboto", sans-serif;
+  }*/
