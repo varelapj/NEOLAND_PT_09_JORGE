@@ -94,13 +94,13 @@ color:white;
   border-radius: 20px;
   }
   
-  #enlaces ul li a:active{
+#enlaces ul li a:active{
     background-color: cornflowerblue;
     padding:20px;
     border-radius: 20px;
     }
     
-    #enlaces ul li a:visited{
+  #enlaces ul li a:visited{
       background-color: cornflowerblue;
       padding:20px;
       border-radius: 20px;

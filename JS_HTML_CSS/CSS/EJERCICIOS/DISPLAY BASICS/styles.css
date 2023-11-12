@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    width: 100vw;
+    min-height: 100vh;
+  }
+
+div{
+  height:40px;
+  width: 150px;
+  margin: 10px;
+  padding:10px;
+  display: inline-block;
+  background-color:#e74c3c;
+}
+
+p{
+
+height:40px;
+width: 150px;
+margin: 10px;
+padding:10px;
+display: inline-block;
+background-color:#9b59b6;
+}
+
+
+a{
+
+  height:40px;
+  width: 150px;
+  margin: 10px;
+  padding:10px;
+  display: inline-block;
+  background-color:#3498db;
+  }
+
+  
+span{
+
+  height:40px;
+  width: 150px;
+  margin: 10px;
+  padding:10px;
+  display: inline-block;
+  background-color:#3498db;
+  }
+  <title>Display</title>
+  </head>
+  <body>
+    <div>I'm a div!</div>
+    <p>I'm a paragraph!</p>
+    <span>I'm a span</span>
+    <a href="#">I'm a link!</a>
+  </body>
+</html>

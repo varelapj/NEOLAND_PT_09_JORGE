@@ -1,0 +1,81 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    width: 100vw;
+    min-height: 100vh;
+  }
+  body, html {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .container {
+    text-align: center;
+    height: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+     display:grid;
+     grid-template-columns: 150px 300px;
+     grid-template-rows: 100px 100px 500px 100px;
+     grid-template-areas:
+       "header header"
+       "sidebar nav"
+        "sidebar article"
+       "footer footer"
+  }
+  
+  .container div {
+    padding: 15px;
+    font-size: 32px;
+    font-family: Helvetica;
+    font-weight: bold;
+    color: white;
+    border-radius: 15px;
+  }
+  
+  .header {
+    background-color: #FFDE22;
+    display:grid;
+    grid-area: header;
+  }
+  
+  .sidebar {
+    background-color: #FF7755;
+    display:grid;
+    grid-area: sidebar;
+  }
+  
+  .nav {
+    background-color: #00DDFF;
+    grid-area:nav;
+  }
+  
+  .article {
+    background-color: #bccbde;
+  }
+  
+  .article p {
+    font-size: 18px;
+    font-family: sans-serif;
+    color: white;
+    text-align: left;
+  }
+  
+  .footer {
+    background-color: #393f4d;
+    grid-area:footer;
+  }
+
+  /*
+  - El gap es de 15px
+- La grilla tiene dos columnas.
+- La cuadrícula tiene cuatro filas.
+- La segunda columna es dos veces más grande que la primera.
+- La tercera fila es cinco veces más grande que las demás.
+- Los elementos de encabezado y pie de página abarcan ambas columnas.
+- El elemento de la barra lateral solo se extiende a lo largo de la primera columna.
+- Los elementos de navegación y artículo se extienden a lo largo de la segunda columna.*/

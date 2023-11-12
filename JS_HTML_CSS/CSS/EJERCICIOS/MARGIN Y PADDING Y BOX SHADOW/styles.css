@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    width: 100vw;
+    min-height: 100vh;
+  }
+
+  @import url("https://fonts.googleapis.com/css2?family=Anek+Telugu:wght@300;400;700&display=swap");
+
+* {
+  font-family: "Anek Telugu", sans-serif;
+}
+
+body h1 {
+  margin-left:4rem;
+  
+}
+
+.image-container {
+  width: 100%;
+  display:center
+
+}
+img {
+  box-shadow: 10px 5px 5px;
+  color:rgba(0, 0, 0, 0.500);
+  display: block;
+  margin: auto;
+}
+
+p {
+  margin: 10rem 10rem 0rem 10rem;
+  padding: 0rem 10rem 0rem 10rem;
+
+  
+}

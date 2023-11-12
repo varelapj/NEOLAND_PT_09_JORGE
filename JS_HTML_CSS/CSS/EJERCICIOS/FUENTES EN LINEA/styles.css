@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Roboto+Condensed:wght@100&family=Roboto:ital,wght@0,100;1,100&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    width: 100vw;
+    min-height: 100vh;
+  }
+
+  .myTitle{
+    font-family: "Roboto", sans-serif;
+  }

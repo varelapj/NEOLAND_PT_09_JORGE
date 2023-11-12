@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    width: 100vw;
+    min-height: 100vh;
+  }
+
+  body {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .one {
+    background: pink;
+    border: 3px solid black;
+    /* CAMBIAR */
+    padding: 32px;
+    margin: 12px;
+  }
+  
+  .two {
+    background: lightblue;
+    border: 3px solid black;
+    /* CAMBIAR */
+    margin-bottom: 48px;
+  }
+  
+  .three {
+    background: peachpuff;
+    border: 3px solid black;
+    width: 200px;
+    /* CAMBIAR */
+    padding: 32px;
+    margin-left: 65%;
+  }

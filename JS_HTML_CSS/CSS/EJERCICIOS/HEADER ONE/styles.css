@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    width: 100vw;
+    min-height: 100vh;
+  }
+
+  .header  {
+    font-family: monospace;
+    background: #fa5252;
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  
+  .logo {
+    font-size: 48px;
+    font-weight: 900;
+    color: black;
+    background: #82c91e;
+    padding: 4px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-color: black;
+    border-style: solid;
+    margin:20px;
+  }
+  
+  ul {
+    /* this removes the dots on the list items*/
+    list-style-type: none;
+    display: flex;
+  flex-wrap: nowrap;
+
+  }
+  
+  a {
+    font-size: 48px;
+    font-weight: 900;
+    color: black;
+width: 150px;
+    padding: 4px 32px;
+    background: white;
+    padding: 8px;
+    /* this removes the line under the links */
+    text-decoration: none;
+    border-style: solid;
+    border-color:black;
+    background-color: rgb(185, 81, 185);
+    color:black;
+    margin:20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  

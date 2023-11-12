@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    width: 100vw;
+    min-height: 100vh;
+  }
+
+  body h1 {
+    background-color: aquamarine;
+  }
+
+  .content{
+    background-color: blue;
+    background-image: url("https://www.transparenttextures.com/patterns/brick-wall.png");
+    background-size:-50%
+  }
+
+  *{
+    background-image: url("https://www.transparenttextures.com/patterns/always-grey.png");
+    overflow: hidden;
+  }
