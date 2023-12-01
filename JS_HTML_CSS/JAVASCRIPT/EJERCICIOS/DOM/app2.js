@@ -54,7 +54,7 @@ element.remove()
 const divSelector = document.querySelector('div')
 divSelector.after(NuevoP)
 const TextoP= document.createTextNode('Voy en medio!')
-NuevoP.appendChild(TextoP) //NECESITO EXPLICACIONES DEL APPENCHILD
+NuevoP.appendChild(TextoP) //NECESITO EXPLICACIONES DEL APPENCHILD*/
 
 
 // 2.9 Inserta p con el texto 'Voy dentro!', dentro de todos los div con la clase .fn-insert-here
