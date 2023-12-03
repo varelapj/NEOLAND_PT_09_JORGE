@@ -28,19 +28,18 @@ const h2 = document.querySelector("h2.fn-insert-here");
 h2.innerHTML += template()*/
 
 
-//! 2.6 Basandote en el siguiente array crea una lista ul > li con los textos del array.
+// 2.6 Basandote en el siguiente array crea una lista ul > li con los textos del array.
 /*const apps = ['Facebook', 'Netflix', 'Instagram', 'Snapchat', 'Twitter'];
 const NuevaListaUL = document.createElement('ul')
 const body = document.querySelector("body")
 body.appendChild(NuevaListaUL)
 
-
-const TextoLi= apps.forEach((element)=>{
-    const NuevaListaLi = document.createElement('li')
-    const  NuevaListaULSelector = document.querySelector("ul")
-    NuevaListaULSelector.appendChild(NuevaListaLi)
-})*/
-
+for (const item of apps) {
+	const li = document.createElement("li");
+	li.innerHTML =`${item}`
+	NuevaListaUL.append(li);
+	}*/
+    
 
 //2.7 Elimina todos los nodos que tengan la clase .fn-remove-me
 /*const RemoveMe = document.querySelectorAll(".fn-remove-me")
@@ -54,7 +53,7 @@ element.remove()
 const divSelector = document.querySelector('div')
 divSelector.after(NuevoP)
 const TextoP= document.createTextNode('Voy en medio!')
-NuevoP.appendChild(TextoP) //NECESITO EXPLICACIONES DEL APPENCHILD*/
+NuevoP.appendChild(TextoP) //!NECESITO EXPLICACIONES DEL APPENCHILD*/
 
 
 // 2.9 Inserta p con el texto 'Voy dentro!', dentro de todos los div con la clase .fn-insert-here

@@ -16,20 +16,20 @@ button.addEventListener("click", (e) => handleClick(e));*/
 
 
 //1.2 Añade un evento 'focus' que ejecute un console.log con el valor //!del input.
-/*const focus = document.querySelector('.focus')
+const focus = document.querySelector('.focus')
 
 let handleClick = (event) => {
-    console.log(event.data);
+    console.log(event.target.value);
  }
-focus.addEventListener("focus", (e) => handleClick(e));*/
+focus.addEventListener("focus", (e) => handleClick(e));
 
 //1.3 Añade un evento 'input' que ejecute un console.log con el valor del input.
 
-const value = document.querySelector('.value')
+/*const value = document.querySelector('.value')
 
 let handleClick = (event) => {
     console.log(event.data);
  }
-value.addEventListener("input", (e) => handleClick(e))
+value.addEventListener("input", (e) => handleClick(e))*/
 
 
