@@ -1,0 +1,8 @@
+#RickandmortyPage{
+    Display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    margin:1rem;
+    gap: 1rem;
+    }
+    

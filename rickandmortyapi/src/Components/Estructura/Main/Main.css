@@ -1,0 +1,17 @@
+main{
+    min-height: 70vh; 
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-top:20vh;
+    margin-bottom:10vh;
+    max-width: 100vw;
+    }
+    
+#imagenrickandmorty{    
+    height:300px;
+    border-radius: 15px;
+     margin-right:20px; 
+}
+
+#RickandmortyPage{max-width:100%}

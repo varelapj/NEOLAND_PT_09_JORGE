@@ -1,0 +1,14 @@
+#pokemon {
+    grid-area:imagen;
+    height: 145px;
+    display:flex;
+    justify-content: right;
+    align-items: right;
+    align-content: right;
+
+  }
+
+  div{
+    overflow: hidden;
+  }
+  

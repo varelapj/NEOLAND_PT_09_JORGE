@@ -1,0 +1,10 @@
+footer{
+    Height: 10vh;
+    display:flex;
+    align-items:center;
+    justify-content:right;
+    background-color: #fee8b7;
+    position:fixed;
+    bottom:0;
+    width:100%
+    }
