@@ -1,0 +1,92 @@
+#PrintPokemon{
+    Display:flex;
+    flex-wrap:wrap;
+    display: inline-block;
+    justify-content: center;
+    margin:1rem;
+    gap: 1rem;
+    color:#737e8d;
+    font-family: 'Courier New', Courier, monospace;
+    }
+
+ #PrintPokemon{
+   text-align: center;
+ }
+      figure.grass {
+        border: 10px solid #63bb5b;
+      }
+      
+      figure.bug {
+        border: 10px solid #8fc12c;
+      }
+    
+      
+      figure.dark {
+        border: 10px solid #5a5366;
+      }
+
+      figure.dragon {
+        border: 10px solid #0a6dc4;
+      }
+  
+      figure.electric {
+        border: 10px solid #f3d13b;
+      }
+    
+      figure.fairy {
+        border: 10px solid #ec8fe6;
+      }
+   
+      figure.fighting {
+        border: 10px solid #ce4068;
+      }
+   
+      
+      figure.fire {
+        border: 10px solid #ff9b54;
+      }
+    
+      
+      figure.flying {
+        border: 10px solid #8fa8dd;
+      }
+     
+      figure.ghost {
+        border: 10px solid #5269ac;
+      }
+    
+      figure.ground {
+        border: 10px solid #d97746;
+      }
+
+      figure.ice {
+        border: 10px solid #74cec1;
+      }
+   
+      figure.normal {
+        border: 10px solid #9099a1;
+      }
+ 
+      figure.poison {
+        border: 10px solid #aa6ac8;
+      }
+
+      figure.psychic {
+        border: 10px solid #f97176;
+      }
+  
+      figure.rock {
+        border: 10px solid #c7b78b;
+      }
+ 
+      
+      figure.steel {
+        border: 10px solid #5a8ea1;
+      }
+   
+      figure.water {
+        border: 10px solid #4d91d5;
+      }
+
+
+

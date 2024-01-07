@@ -17,7 +17,7 @@ const streamers = [
 
 const value = document.querySelector('#streamers')
 let handleClick = (event) => {
-   const input= event.target.value;
+
    const filterdata = streamers.filter((item,index)=> item.name.includes(event.target.value))
    console.log(filterdata)
 
