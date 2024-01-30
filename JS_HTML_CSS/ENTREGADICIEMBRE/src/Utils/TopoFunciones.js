@@ -2,6 +2,8 @@
 //! he quitado cosas, creado otras, camiado otras, lo he probado, adaptado, etc.
 //! lo dejo en la entrega porque he trabajado en él bastante tiempo
 
+import { PrintTopo } from "../Pages/Topo/TopoInicio";
+
 
 export const TopoFuncion = ()=>{
 
@@ -60,6 +62,7 @@ export const TopoFuncion = ()=>{
             <div id="MensajeTopo"><h2 class="ClaseTopo">Fin del Juego</h2>
             <h2 class="ClaseTopo">Topos Descubiertos:  ${results}</h2>
             </div>`;
+          PrintTopo();
 // Ponemos un mensaje de alerta para poder iniciar la cuenta atrás
         }   if (currentTime===29) {   
             alert('Iniciar Cuenta Atrás')
@@ -67,8 +70,7 @@ export const TopoFuncion = ()=>{
     }
 // Repite la función countdown (resta 1 al contador de tiempo inciial del HTML) cada segundo
     let timerId = setInterval(countdown, 1000);
-    
-    
+
     };
 
 

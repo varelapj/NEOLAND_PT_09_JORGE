@@ -17,7 +17,8 @@ const storage = new CloudinaryStorage({
 });
 
 //!------------ FUNCION QUE SUBE LAS IMAGENES
-//Multer es la librería y storage es la función de arriba. 
+//multer es una función de la librería MULTER y storage es la función de arriba. 
+//multer desencadena la subida y CloudinaryStorage gestiona el almacén
 //Esto se usa en el routes
 
 const upload = multer({ storage });
@@ -29,7 +30,6 @@ const deleteImgCloudinary = (imgUrl) => {
   const nameSplited = imgSplited[imgSplited.length - 1].split(".");
   const folderSplited = imgSplited[imgSplited.length - 2];
   const public_id = `${folderSplited}/${nameSplited[0]}`;
-
   cloudinary.uploader.destroy(public_id, () => {
     console.log("Image delete in cloudinary");
   });

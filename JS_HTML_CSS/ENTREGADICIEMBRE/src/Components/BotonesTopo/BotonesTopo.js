@@ -6,13 +6,13 @@ import { TopoFuncion } from "../../Utils/TopoFunciones";
 // El segundo tiene una clase diferente porque es donde sale el topo inicialmente
 // El grid es donde ban los div dentro
 const template =   `<div id="BotonesTopo">
-
+ 
 <div id="customCursor"></div>
 
 <h2 id="punto">Puntuación:</h2> 
 <h2 id="puntuacion">0</h2>
 <div id="tiempo">Cuenta atrás:</div>
-<h2 id="cuentaatras">30</h2>
+<h2 id="cuentaatras"></h2>
    
 <div class="grid">
         <div class="square" id="1"></div>
