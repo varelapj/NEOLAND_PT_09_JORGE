@@ -154,13 +154,13 @@ const getAllMovie = async (req, res, next) => {
       return res.status(200).json(allMovie);
     } else {
       // si no hay registros lanzamos una respuesta 404
-      return res.status(404).json("No se han encontrado personajes");
+      return res.status(404).json("No se han encontrado películas");
     }
   } catch (error) {
     // capturtamos el error
     return res
       .status(409)
-      .json({ error: "Error al buscar personajes", message: error.message });
+      .json({ error: "Error al buscar películas", message: error.message });
   }
 };
 
@@ -181,7 +181,7 @@ const getByIdMovie = async (req, res, next) => {
     if (MovieById) {
       return res.status(200).json(MovieById);
     } else {
-      return res.status(404).json("No se ha encontrado el character");
+      return res.status(404).json("No se ha encontrado la movie");
     }
   } catch (error) {
     return res
