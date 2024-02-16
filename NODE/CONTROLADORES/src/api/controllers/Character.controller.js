@@ -1,8 +1,8 @@
 //! traemos la funcion de borrado de imagenes 
 // por si el usuario al subir un nuevo character tiene un error
-//ES DECIR, NO ACABA DE REGISTRARSE que esa imagen se borre
+//^ES DECIR, NO ACABA DE REGISTRARSE que esa imagen se borre
 const { deleteImgCloudinary } = require("../../middleware/file.middleware");
-// TRAEMOS EL UTIL DE CHECKEO 
+//^ TRAEMOS EL UTIL DE CHECKEO 
 const enumOk = require("../../utils/enumOk");
 
 //!------- Nos traemos los modelos que vayamos utilizar y que está nen la base de datos
@@ -27,15 +27,21 @@ const create = async (req, res, next) => {
     // Es importante por si es modificado posteriormente a la creacion del controlador
     await Character.syncIndexes();
 
-    // Creamos una nueva instancia de Character con los datos del body
+
+    // Creamos una nueva instancia de Character con los datos del body.
+    // El body es l oque nosotros le vamos a introducir, y lo que va a hacer es,
+    // con la función Character, que creamso en character.model, meterlo
+    // a través del método post.
 
     const newCharacter = new Character(req.body);
 
-    // Comprobamos si hay imagen para añadirla al Character creado
+    //^Comprobamos si hay imagen para añadirla al Character creado
+    //^ la imagen viene por req.file no por req.body. Aquí estamos evaluando si
+    //^ la función de arriba contiene algo.
     if (catchImg) {
       newCharacter.image = catchImg;
     } else {
-      // sino trae imagen la solicitud, le ponemos al character una imagen por defecto
+      // si no trae imagen la solicitud, le ponemos al character una imagen por defecto
       newCharacter.image =
         "https://res.cloudinary.com/dhkbe6djz/image/upload/v1689099748/UserFTProyect/tntqqfidpsmcmqdhuevb.png";
     }

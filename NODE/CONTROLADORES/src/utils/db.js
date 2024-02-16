@@ -21,7 +21,8 @@ const connect = async () => {
 
     const db = await mongoose.connect(MONGO_URI);
 
-    // Hacemos destructuring de nombre y host de nuestra base de datos, entrando en la constante db, función .connection
+    // Hacemos destructuring de nombre y host de nuestra base de datos, 
+    //^ entrando en la constante db, función .connection
     const { name, host } = db.connection;
 
     console.log(

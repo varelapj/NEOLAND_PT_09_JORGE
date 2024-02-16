@@ -2,11 +2,11 @@
 const mongoose = require("mongoose");
 
 //!--------- CREAMOS UNA VARIABLE QUE EJECUTARÁ ESQUEMAS CON UN 
-//! PROCEDIMIENTO ALMACENADO 
+//& PROCEDIMIENTO ALMACENADO 
 const Schema1 = mongoose.Schema;
 
 //!---------> CREAMOS EL MODELO DE DATOS QUE LANZARÁ 
-//! LA CONSTANTE DE ARRIBA SCHEMA1
+//& LA CONSTANTE DE ARRIBA SCHEMA1
 //* Tenemos que poner a cada clave el tipo de dato
 //* Definimos otras propiedades que limitan la información que se puede incluir esa clase --->
 //* si es obligatoria , longitud maxima, minima.....

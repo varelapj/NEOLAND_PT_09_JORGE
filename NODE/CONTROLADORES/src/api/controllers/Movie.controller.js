@@ -1,6 +1,8 @@
 const Character = require("../models/Character.model");
 const Movie = require("../models/Movie.model");
 
+//& OK
+
 //? -------------------------------------------------------
 //!--------------------- POST - CREATE --------------------
 //? -------------------------------------------------------
@@ -35,16 +37,18 @@ const createMovie = async (req, res, next) => {
 //!--------------------- PATCH - TOGGLE --------------------
 //? -------------------------------------------------------
 
+//& Le pasamos el ID de movie por el params y el ID de CHARACTERS por el body id/ids de los characters
+
+
 const toggleCharacters = async (req, res, next) => {
   try {
-    // cogemos el id de los params
+    // cogemos el id  de movie de los params
     const { id } = req.params;
 
-    // Recogemos los characters del body
+    // Recogemos los characters del body a través de un destructuring
     const { characters } = req.body; // --> esto devuelve un array de id ["12343432", "72369469367"]
-    console.log("characters", characters);
-S
-    // Buscamos la pelicula a actualizar por el id
+
+    //^ Buscamos la pelicula a actualizar por el id con aWait porque tengo que interactuar con movies
 
     const movieById = await Movie.findById(id);
 
@@ -54,32 +58,37 @@ S
       // Separando las posiciones del string
 
       // Separamos por comas y convertimos en array
+      // ESTAS SEPARACIONES LAS PODEMOS MODIFICAR. AL PONERLO ASÍ, TENEMOS QUE PASAR
+      // LOS VALORES EN INSOMNIA SEPARADOS  CON , 
       const arrayCharacters = characters.split(",");
 
-      console.log("array characters", arrayCharacters);
 
       // Recorremos el array de characters que son Id para comprobar si estan en la movie (sacarlos) o sino estan (meterlos)
 
       // Lo metemos en una promesa debido al mapeo que es asincrono y asi no tenemos problemas
       Promise.all(
         arrayCharacters.map(async (character) => {
-          console.log("character", character);
+         //COMPROBAMOS SI INCLUYE EL VALOR DEL ARRAY QUE ESTAMOS RECORRIENDO ARRIBA
           if (movieById.characters.includes(character)) {
             // Si lo incluye hay que quitarlo ( character al array de characters de movie)
             //** LO QUITAMOS PORQUE LO INCLUYE */
             try {
               // buscamos la movie que queremos actualizar
               await Movie.findByIdAndUpdate(id, {
-                // quitamos el character del array de characters
+                //Y LE QUITAMOS (PULL), UNO POR UNO (BUCLE) LOS CHARACTERS DEL BODY 
                 $pull: { characters: character },
               });
 
               try {
-                // Buscamos el character y le quitamos la pelicula
+                // Buscamos el character DEL ARRAY y le quitamos la pelicula
                 await Character.findByIdAndUpdate(character, {
                   $pull: { movies: id },
                 });
-              } catch (error) {
+              } 
+              
+              // CAMPTURAMOS LSO ERRORES
+              
+              catch (error) {
                 return res.status(409).json({
                   error: "Error al actualizar el character, quitarle la movie",
                   message: error.message,
@@ -92,8 +101,12 @@ S
               });
             }
           } else {
+
+
+
             // Sino lo incluye lo añadimos ( character al array de characters de movie)
             //** LO AÑADIMOS */
+
             try {
               // actualizamos la movie añadiendole el character
               await Movie.findByIdAndUpdate(id, {
@@ -189,7 +202,7 @@ const getByIdMovie = async (req, res, next) => {
       .json({ error: "Error al buscar por Id", message: error.message });
   }
 };
-
+ 
 //? -------------------------------------------------------
 //!--------------------- GET - GET By NAME --------------------
 //? -------------------------------------------------------

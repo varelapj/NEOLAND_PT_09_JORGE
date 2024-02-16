@@ -5,7 +5,7 @@ const {
   toggleCharacters,
   getByNameMovie,
   getAllMovie,
-  getByIdMovie,
+  getByIdMovie, 
   deleteMovie,
 } = require("../controllers/Movie.controller");
 

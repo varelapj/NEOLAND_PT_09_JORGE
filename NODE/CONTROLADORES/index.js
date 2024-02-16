@@ -22,12 +22,15 @@ const app = express();
 const cors = require("cors");
 app.use(cors());
 
-//! Limitaciones
+//! Limitaciones a los archivos de nuesstro proyecto
 app.use(express.json({ limit: "5mb" }));
 app.use(express.urlencoded({ limit: "5mb", extended: false }));
 
 //! ------------------- Rutas ---------------------
-
+//Generamos la url y le decimos que ejecute la acción que establecimos
+// en el archivo character.routes.js const CharacterRouter = express.Router();
+// en el fichero de rutas le hemos puesto las termianciones. Estas riutas de por si no 
+//llevan a ningún sitio. Además van precedidas del local  host http://localhost:8081/
 const CharacterRouter = require("./src/api/routes/Character.routes");
 app.use("/api/v1/character", CharacterRouter);
 
