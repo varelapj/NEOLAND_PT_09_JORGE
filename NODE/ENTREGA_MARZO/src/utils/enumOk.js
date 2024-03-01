@@ -17,7 +17,7 @@ const enumMultaPagada = (MultaPagada) => {
 };
 
 const enumGenero = (Genero) => {
-  const enumGenero = ["hombre", "mujer", "otro"];
+  const enumGenero = ["Hombre", "Mujer", "Otro"];
   if (enumGenero.includes(Genero)) {
     return { check: true, Genero };
   } else {

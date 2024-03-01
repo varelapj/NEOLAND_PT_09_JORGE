@@ -1,6 +1,7 @@
 const Coches = require("../models/coches.model");
 const Multas = require("../models/multas.model");
-const enumOk = require("../../utils/enumOk");
+const {enumMultaPagada }= require("../../utils/enumOk");
+const Conductores = require("../models/conductores.model");
 
 //! CREATE
 const createMultas = async (req, res, next) => {
@@ -73,6 +74,23 @@ const getByPagadaMultas = async (req, res, next) => {
   }
 };
 
+//! GET BY TIPO
+const getByTipoMultas = async (req, res, next) => {
+  try {
+    const { Tipo } = req.params;
+    const MultasByTipo = await Multas.find({ Tipo }).populate("Coches");
+    if (MultasByTipo.length !== 0 ){
+      return res.status(200).json(MultasByTipo);
+    } else {
+      return res.status(404).json("No se han encontrado las multas. Recuerde que el valor de 'Tipo' debe ser 'Aparcamiento', 'Velocidad' u 'Otro' con la primera letra en mayúscula");
+    }
+  } catch (error) {
+    return res
+      .status(409)
+      .json({ error: "Error al buscar por tipo de multa", message: error.message });
+  }
+};
+
 
 //! UPDATE
 const updateMultas = async (req, res, next) => {
@@ -92,10 +110,9 @@ const updateMultas = async (req, res, next) => {
         Calle: req.body?.Calle ? req.body?.Calle : multasById.Calle,
         Tipo: req.body?.Tipo ? req.body?.Tipo : multasById.Tipo,
         Importe: req.body?.Importe ? req.body?.Importe : multasById.Importe,
-        Pagada: req.body?.Pagada ? req.body?.Pagada : multasById.Pagada,
       };
       if (req.body?.Pagada) {
-        const resultEnumOk = enumOk.enumMultaPagada(req.body?.Pagada);
+        const resultEnumOk = enumMultaPagada(req.body?.Pagada);
         bodyCustom.Pagada = resultEnumOk.check
           ? req.body?.Pagada
           : multasById.Pagada;
@@ -148,13 +165,13 @@ const updateMultas = async (req, res, next) => {
 
   
 
-//! TOGGLE
+//! TOGGLE COCHES
 //! Le pasamos el ID de multa por el params y el ID de coches por el body 
 const toggleCoches = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { coches } = req.body; 
-
+console.log(coches);
 
     const multasById = await Multas.findById(id);
     if (multasById) {
@@ -235,5 +252,92 @@ const toggleCoches = async (req, res, next) => {
 };
 
 
+//! TOGGLE CONDUCTORES
+//! Le pasamos el ID de multa por el params y el ID de conductores por el body 
+const toggleConductores = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { conductores } = req.body; 
 
-module.exports = { createMultas, getAllMultas, getByIdMultas, getByPagadaMultas, updateMultas, toggleCoches };
+
+    const multasById = await Multas.findById(id);
+    if (multasById) {
+      const arrayConductores = conductores.split(",");
+
+      Promise.all(
+        arrayConductores.map(async (conductor) => {
+          if (multasById.Conductores.includes(conductor)) {
+
+            try {
+              await Multas.findByIdAndUpdate(id, {
+                $pull: { Conductores: conductor },
+              });
+
+              try {
+                await Conductores.findByIdAndUpdate(conductor, {
+                  $pull: { Multas: id },
+                });
+              } 
+              
+              
+              catch (error) {
+                return res.status(409).json({
+                  error: "Error al desenlazar el conductor de la multa",
+                  message: error.message,
+                });
+              }
+            } catch (error) {
+              return res.status(409).json({
+                error: "Error al desenlazar la multa del conductor",
+                message: error.message,
+              });
+            }
+          } else {
+
+
+
+            try {
+
+              await Multas.findByIdAndUpdate(id, {
+                $push: { Conductores: conductor },
+              });
+
+              try {
+
+
+                await Conductores.findByIdAndUpdate(conductor, {
+                  $push: { Multas: id },
+                });
+              } catch (error) {
+                return res.status(409).json({
+                  error: "Error al enlazar el conductor a la multa",
+                  message: error.message,
+                });
+              }
+            } catch (error) {
+              return res.status(409).json({
+                error: "Error al enlazar la multa al conductor",
+                message: error.message,
+              });
+            }
+          }
+        })
+      ).then(async () => {
+        return res
+          .status(200)
+          .json(await Multas.findById(id).populate("Conductores"));
+      });
+    } else {
+
+      return res.status(404).json("Multa no encontrada, prueba con otro id");
+    }
+  } catch (error) {
+    return res
+      .status(409)
+      .json({ error: 'Error al actualizar la multa. Recuerde introducir los conductores y los códigos entre doble comilla con el siguiente formato "coches": "codigodeconductor1,codigodeconductor2"', message: error.message });
+  }
+};
+
+
+
+module.exports = { createMultas, getAllMultas, getByIdMultas, getByPagadaMultas,getByTipoMultas, updateMultas, toggleCoches, toggleConductores };

@@ -11,6 +11,7 @@ const SchemaMultas = new MultasSchema(
     Tipo: {
       type: String,
       enum: ["Aparcamiento", "Velocidad", "Otro"],
+      default: "Otro",
       required: false,
       immutable: true
     },

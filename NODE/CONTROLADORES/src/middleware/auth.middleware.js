@@ -45,7 +45,8 @@ const isAuth = async (req, res, next) => {
 
     //** CREAMOS EL REQ.USER con todos los datos del usuario */
     //** */ --> en la solicitud tenemos los datos del user
-
+//^ ESTE NOMBRE TIENE QUE USARSE LEUGO CUANDO USEMOS LOS DATOS DE AQUÍ,
+//^  LE ESTAMOS AÑADIENDO UNOS DATOS AL REQ. SIEMPRE TIENE QUE IR CON REQ 
     req.user = await User.findById(decoded.id);
 
     // Como no hemos puesto return le decimos que continue
@@ -72,7 +73,8 @@ const isAuthAdmin = async (req, res, next) => {
     console.log("decoded", decoded);
 
     //** CREAMOS EL REQ.USER con todos los datos del usuario */ --> en la solicitud tenemos los datos del user
-
+//^ ESTE NOMBRE TIENE QUE USARSE LEUGO CUANDO USEMOS LOS DATOS DE AQUÍ,
+//^  LE ESTAMOS AÑADIENDO UNOS DATOS AL REQ. SIEMPRE TIENE QUE IR CON REQ 
     req.user = await User.findById(decoded.id);
 
     // Comprobamos que el rol sea de admin

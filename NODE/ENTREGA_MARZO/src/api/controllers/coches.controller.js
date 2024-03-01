@@ -1,5 +1,6 @@
 
 const Coches = require("../models/coches.model");
+const Conductores = require("../models/conductores.model");
 const Multas = require("../models/multas.model");
 
  
@@ -120,6 +121,10 @@ const deleteCoches = async (req, res, next) => {
           { Coches: id },
           { $pull: { Coches: id } }
         );
+        await Conductores.updateMany(
+          { Coches: id },
+          { $pull: { Coches: id } }
+        );
         return res.status(CochesDelete ? 409 : 200).json({
           deleteTest: CochesDelete ? false : true,
         });
@@ -140,7 +145,7 @@ const deleteCoches = async (req, res, next) => {
   }
 };
 
-//! TOGGLE
+//! TOGGLE MULTAS
 //! Le pasamos el ID de coche por el params y el ID de multas por el body 
 const toggleMultas = async (req, res, next) => {
   try {
@@ -226,4 +231,91 @@ const toggleMultas = async (req, res, next) => {
   }
 };
 
-module.exports = { createCoches, getAllCoches, getByIdCoches, getByMatriculaCoches, getByAnoCoches, deleteCoches, toggleMultas };
+
+
+//! TOGGLE CONDUCTORES
+//! Le pasamos el ID de coche por el params y el ID de CONDUCTORES por el body 
+const toggleConductores = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { conductores } = req.body; 
+
+
+    const cochesById = await Coches.findById(id);
+    if (cochesById) {
+      const arrayConductores = conductores.split(",");
+
+      Promise.all(
+        arrayConductores.map(async (conductor) => {
+          if (cochesById.Conductores.includes(conductor)) {
+
+            try {
+              await Coches.findByIdAndUpdate(id, {
+                $pull: { Conductores: conductor },
+              });
+
+              try {
+                await Conductores.findByIdAndUpdate(conductor, {
+                  $pull: { Coches: id },
+                });
+              } 
+              
+              
+              catch (error) {
+                return res.status(409).json({
+                  error: "Error al desenlazar el conductor del coche",
+                  message: error.message,
+                });
+              }
+            } catch (error) {
+              return res.status(409).json({
+                error: "Error al desenlazar el coche del conductor",
+                message: error.message,
+              });
+            }
+          } else {
+
+
+
+            try {
+
+              await Coches.findByIdAndUpdate(id, {
+                $push: { Conductores: conductor },
+              });
+
+              try {
+
+
+                await Conductores.findByIdAndUpdate(conductor, {
+                  $push: { Coches: id },
+                });
+              } catch (error) {
+                return res.status(409).json({
+                  error: "Error al enlazar el conductor al coche",
+                  message: error.message,
+                });
+              }
+            } catch (error) {
+              return res.status(409).json({
+                error: "Error al enlazar el coche al conductor",
+                message: error.message,
+              });
+            }
+          }
+        })
+      ).then(async () => {
+        return res
+          .status(200)
+          .json(await Coches.findById(id).populate("Conductores"));
+      });
+    } else {
+
+      return res.status(404).json("Coche no encontrado, prueba con otro id");
+    }
+  } catch (error) {
+    return res
+      .status(409)
+      .json({ error: 'Error al actualizar el coche. Recuerde introducir los conductores y los códigos entre doble comilla con el siguiente formato"conductores": "codigodecondcutor1,codigodecondcutor2"', message: error.message });
+  }
+};
+module.exports = { createCoches, getAllCoches, getByIdCoches, getByMatriculaCoches, getByAnoCoches, deleteCoches, toggleMultas, toggleConductores };

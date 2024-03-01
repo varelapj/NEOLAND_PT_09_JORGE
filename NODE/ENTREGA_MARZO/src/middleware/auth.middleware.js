@@ -15,8 +15,8 @@ const isAuth = async (req, res, next) => {
   try {
     const decoded = verifyToken(token, process.env.JWT_SECRET);
     
-    req.conductores = await Conductores.findById(decoded.id);
-
+    req.Conductores = await Conductores.findById(decoded.id);
+console.log(req.Conductores)
     next();
   } catch (error) {
     return res
@@ -35,9 +35,9 @@ const isAuthAdmin = async (req, res, next) => {
   try {
     const decoded = verifyToken(token, process.env.JWT_SECRET);
 
-    req.conductores = await Conductores.findById(decoded.id);
-
-    if (req.conductores.Rol !== "admin") {
+    req.Conductores = await Conductores.findById(decoded.id);
+console.log(req.Conductores);
+    if (req.Conductores.Rol !== "Admin") {
       return next(new Error("No autorizado, no eres admin"));
     } else {
       next();

@@ -1,16 +1,25 @@
+//^ PARA ENCRIPTAR DESENCRIPTAR
 const bcrypt = require("bcrypt");
+//^ PARA LAS VARIABLES DE ENTORNO
 const dotenv = require("dotenv");
-const nodemailer = require("nodemailer");
-const validator = require("validator");
 dotenv.config();
-
-const User = require("../models/User.model");
-
+//^ PARA EL ENVÍO DEL EMAIL CON EL CÓDIGO
+const nodemailer = require("nodemailer");
+//^ PARA VALIDAR EMAILS Y CONTRASEÑAS
+const validator = require("validator");
+//^ TRAEMOS EL MODELO DE USUARIO
+const User = require("../models/User.model"); 
+//^ PARA BORRAR LA IMAGEN DE CLOUDINARY 
 const { deleteImgCloudinary } = require("../../middleware/file.middleware");
+//^ LA FUNCIÓN QUE GENERA EL TOKEN CON jsonwebtoken
 const { generateToken } = require("../../utils/token");
+//^ LA FUNCIÓN QUE GENERA UN PASSQORD ALEATORIO
 const randomPassword = require("../../utils/randomPAssword");
+//^ LA FUNCIÓN QUE GENERA UN CÓDIGO ALEATORIO
 const randomCode = require("../../utils/randomCode");
+//^ LAS FUNCIONES QUE COMPRUEBAN LSO CAMPSO DEL MODELO CON UN VALRO FIJO
 const enumOk = require("../../utils/enumOk");
+//^ EL RESTO DE MODELOS
 const Comment = require("../models/Comment.model");
 const Movie = require("../models/Movie.model");
 const Character = require("../models/Character.model");
@@ -19,19 +28,16 @@ const Character = require("../models/Character.model");
 //? ----------------------- REGISTER LARGO CON ENVIO DE CÓDIGO AL EMAIL ---------
 //! -----------------------------------------------------------------------------
 const registerLargo = async (req, res, next) => {
-  // vemos si hay imagen en la solicitud
+  // vemos si hay imagen en la solicitud 
+  //^ Y LA GUARDAMOS
   const catchImg = req.file?.path;
-
   try {
     // indexes
     await User.syncIndexes();
-
-    // guardamos el código de confirmacion random en una variable
+    //^ GENERAMOS UN NÚEMRO RANDOM Y LO GUARDAMOS EN UNA VARIABLE
     let confirmationCode = randomCode();
-
     // destructuring del name y email del req.body
     const { email, name } = req.body;
-
     // Buscamos en la BD si hay algun usuario ya creado con ese email o ese nombre -->
     //** FINDONE metodo de mongoose para encontrar elementos coincidentes
     const userExist = await User.findOne(
@@ -46,7 +52,6 @@ const registerLargo = async (req, res, next) => {
     // sino existe el usuario procedemos a crearlo
     if (!userExist) {
       //** LO CREAMOS */ --> con el código random y con lo que trae el req.body
-
       const newUser = new User({ ...req.body, confirmationCode });
       // verificamos si hay imagen en la solicitud, y sino hay le ponemos una imagen por defecto
       if (req.file) {
@@ -58,18 +63,18 @@ const registerLargo = async (req, res, next) => {
       }
 
       // Tenemos creado el user con los datos, ahora debemos guardarlo
-
+      //^ CON LA INFORMACIÓN QUE PASAMOS POR EL BODY Y EL RANDOM CODE
+      //^ AQUÍ, AL USAR EL SAVE, SE EJECUTATARÍA EL BCRYPT
       try {
         const userSave = await newUser.save();
-
         // Comprobamos que este usuario se ha guardado y enviamos el código
         if (userSave) {
           // Todo ---> ENVIAMOS EL CÓDIGO
           // llamamos a las variables de entorno
           const emailENV = process.env.EMAIL;
           const passwordENV = process.env.PASSWORD;
-
           // creamos el transport
+           //^ QUE  GENERA EL OBJETO Y CUERPO EL EMAIL CON LA FUNCIÓN CREATETRANSPORT DE NODEMAILER
           const transporter = nodemailer.createTransport({
             service: "gmail",
             auth: {
@@ -77,7 +82,6 @@ const registerLargo = async (req, res, next) => {
               pass: passwordENV,
             },
           });
-
           // creamos las opciones del mensaje
           const mailOptions = {
             from: emailENV,
@@ -87,6 +91,7 @@ const registerLargo = async (req, res, next) => {
           };
 
           // enviamos el email
+           //^ CON SENDMAIL
           transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
               return res
@@ -110,9 +115,11 @@ const registerLargo = async (req, res, next) => {
       }
     } else {
       // Lanzamos error porque el usuario ya existe con el email o el name
+       //^ Y BORRAMOS LA IMAGEN QUE SE SUBIÓ A CLOUDINARY
       req.file && deleteImgCloudinary(catchImg);
       return res.status(409).json("El usuario ya existe");
     }
+      //^ NO CREAMOS EL USARIO Y BORRAMOS LA IMAGEN QUE SE SUBIÓ A CLOUDINARY
   } catch (error) {
     req.file && deleteImgCloudinary(catchImg);
     return res
@@ -134,7 +141,6 @@ const registerWithRedirect = async (req, res, next) => {
 
     // guardamos el codigo de confirmación
     let confirmationCode = randomCode();
-
     // buscamos si hay algun user con el email o el name
     const userExist = await User.findOne(
       { email: req.body.email },
@@ -143,26 +149,30 @@ const registerWithRedirect = async (req, res, next) => {
 
     // Comprobamos que este user no existe
     if (!userExist) {
-      // Sino existe lo creamos
+      // Sino existe lo creamos 
+      //^ CON LA INFORMACIÓN QUE PASAMOS POR EL BODY Y EL RANDOM CODE
       const newUser = new User({ ...req.body, confirmationCode });
-
       // vemos si hay imagen en la solicitud
       if (req.file) {
         newUser.image = req.file.path;
       } else {
         // Le ponemos una imagen por defecto
         newUser.image =
-          "https://res.cloudinary.com/dhkbe6djz/image/upload/v1689099748/UserFTProyect/tntqqfidpsmcmqdhuevb.png";
+          "https://asset.cloudinary.com/dx8p4o1ak/187c982363c843a8138d36e248e762db";
       }
-
       try {
         // guardamos al user con esos datos
+        //^ CON LA INFORMACIÓN QUE PASAMOS POR EL BODY Y EL RANDOM CODE
         const userSave = await newUser.save();
-
         // si el user se ha creado hacemos el redirect
         if (userSave) {
+          //^  REDIRECT ES UNA FUNCION DE NODE
           return res.redirect(
+          //^ 307PARA QUE PUEDA SER UN POST
             307,
+            //^GUARDO EL ID DEL USUARIO PORQUE LUEGO ES L OQUE VA A USAR PARA 
+            //^ RECUPERAR EL EMAIL
+            //^ ESTA RUTA YA ESTÁ CREADA EN LOS ROUTES CON EL SENDCODE
             `http://localhost:8081/api/v1/user/register/sendMail/${userSave._id}`
           );
         } else {
@@ -199,15 +209,15 @@ const registerWithRedirect = async (req, res, next) => {
 //! -----------------------------------------------------------------------------
 //? --------------------------------- SEND CODE CONFIRMATION ---------------------
 //! -----------------------------------------------------------------------------
-
+//^ EL SEND CODE LO USAMOS ARRIBA Y LO 'COMPONETIZAMOS' AQUÍ
 const sendCode = async (req, res, next) => {
   try {
     // Buscamos al user por su id de los params
-    // para buscar el email y el codigo de confirmacion
-
+    //^ DE http://localhost:8081/api/v1/user/register/sendMail/${userSave._id}
+    //^ para buscar el email y el codigo de confirmacion GUARDADP EN EL SAVE
     const { id } = req.params;
 
-    // Buscamos al user
+    //^ Buscamos Y GUARDAMOS al user PARA PODER COGER SU EMAIL
     const userDB = await User.findById(id);
 
     // llamamos a las variables de entorno
@@ -215,6 +225,8 @@ const sendCode = async (req, res, next) => {
     const passwordENV = process.env.PASSWORD;
 
     // creamos el transport
+    //^ QUE  GENERA EL OBJETO Y CUERPO EL EMAIL CON LA FUNCIÓN CREATETRANSPORT DE NODEMAILER
+
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -232,6 +244,7 @@ const sendCode = async (req, res, next) => {
     };
 
     // enviamos el email
+    //^ CON SENDMAIL
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         return res
@@ -259,7 +272,7 @@ const resendCode = async (req, res, next) => {
     // llamamos a las variables de entorno
     const emailENV = process.env.EMAIL;
     const passwordENV = process.env.PASSWORD;
-
+ // ^ CREAMOS EL TRANSPORT
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -267,8 +280,10 @@ const resendCode = async (req, res, next) => {
         pass: passwordENV,
       },
     });
-
+ 
     // Buscamos al usuario por el email que nos trae la solicitud
+     // ^ NO POR EL ID DE LOS PARAMS, NO TENEMOS AQUÍ EL USERSAVE
+      // ^ TENDREMOS QUE METER EL EMAIL POR EL BODY PARA QUE LO BUSQUE
     const userSave = await User.findOne({ email: req.body.email });
 
     if (userSave) {
@@ -281,6 +296,7 @@ const resendCode = async (req, res, next) => {
       };
 
       // enviamos el email
+       // ^ CON EL CUERPO DEL TRANSPORT
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
           return res
@@ -306,7 +322,9 @@ const resendCode = async (req, res, next) => {
 //! -----------------------------------------------------------------------------
 //? --------------------------------- CHECK NEW USER --------------------------
 //! -----------------------------------------------------------------------------
-
+//^ BORRAREMOS EL USER SI METEMSO EL CÓDIGO MAL,
+//^ POR SI INTENTA SUPLANTAR
+//^ HABRÁ QUE REGISTRARLO DE NUEVO
 const checkNewUser = async (req, res, next) => {
   try {
     // Recibimos el email y el confirmationCode de la solicitud
@@ -343,9 +361,9 @@ const checkNewUser = async (req, res, next) => {
         }
       } else {
         // Si los códigos no coinciden borramos a este user
-
+      //^ POR SI NOS INTENTAN SUPLANTAR
         await User.findByIdAndDelete(userExist._id);
-
+ 
         // si la imagen no es la que hay por defecto hay que borrarla
         if (
           userExist.image !==
@@ -374,7 +392,9 @@ const checkNewUser = async (req, res, next) => {
 //! -----------------------------------------------------------------------------
 //? --------------------------------- LOGIN -------------------------------------
 //! -----------------------------------------------------------------------------
-
+//^ HAY QUE PASAR LA CONTRASEÑA SIN ENCRIPTAR
+//^ SE DFERENCIA DE LAUTOLOGIN PORQUE EN EL AUTOLOGIN 
+//^ SE PASA ENCRIPTADA DESDE EL REQ.USER
 const login = async (req, res, next) => {
   try {
     // hacemos destructuring del email y la pass del req.body
@@ -391,6 +411,7 @@ const login = async (req, res, next) => {
       if (bcrypt.compareSync(password, userDB.password)) {
         // si coinciden devuelve true y puedo generar el token
         //** TOKEN */
+                //^ QUE NOS LO DEVOLVERÁ EN CONSOLA/INSOMNIA
         const token = generateToken(userDB._id, email);
 
         // Una vez generado enviamos una respuesta con el user y este token
@@ -421,7 +442,8 @@ const login = async (req, res, next) => {
 //! -----------------------------------------------------------------------------
 //? ------------------------------- AUTOLOGIN -----------------------------------
 //! -----------------------------------------------------------------------------
-
+//^ EN EL FRONT LO VAMOS A REDIRIGIR
+//^ HAY QUE PASARLA ENCRIPTADA
 const autoLogin = async (req, res, next) => {
   try {
     // destructuring del email y pass del body
@@ -436,12 +458,13 @@ const autoLogin = async (req, res, next) => {
       //** En este caso se comparan las 2 contraseñas ENCRIPTADAS */
       if (password === userDB.password) {
         // Si coinciden generamos el token
+                //^ QUE NOS LO DEVOLVERÁ EN CONSOLA/INSOMNIA
         const token = generateToken(userDB._id, email);
 
         // Enviamos la respuesta con el token
         return res.status(200).json({
           user: userDB,
-          token,
+          token, 
         });
       } else {
         // Lanzamos error en contraseña
@@ -473,10 +496,13 @@ const forgotPassword = async (req, res, next) => {
     const { email } = req.body;
 
     // Buscamos al user para ver si existe
+    //^ CON EL EMAIL DEL BODY
     const userDB = await User.findOne({ email });
 
     if (userDB) {
       // Si el user existe hacemos el redirect que envia el correo con las pass nueva
+      //^ CON EL CONTROLADOR DE ENVÍO DE CONTRASEÑA, NO HACE FALTA QUE SEA AUTENTICADA
+      //^ SI LA OTRA ES AUTENTICADA, LA DE CAMBIO DE CONTRASEÑA
       //! redirect -- 307
       return res.redirect(
         307,
@@ -502,6 +528,7 @@ const forgotPassword = async (req, res, next) => {
 const sendPassword = async (req, res, next) => {
   try {
     // traemos el id por req.params
+    //^ QUE COMO ES UN REDIRECT, LO COGEMOS DEL PARAMSO DE LA RUTA REDIRECT
     const { id } = req.params;
 
     // Buscamos al user
@@ -511,10 +538,13 @@ const sendPassword = async (req, res, next) => {
 
     if (userDB) {
       // generamos password segura random y la enviamos
+      //^ CON EL UTIL RANDOMPASSWORD
       const passwordSecure = randomPassword();
 
       //todo ------> ENVIO DEL CORREO
+
       // llamamos a las variables de entorno
+            //^ DE NODEMAILER
       const emailENV = process.env.EMAIL;
       const passwordENV = process.env.PASSWORD;
 
@@ -543,10 +573,12 @@ const sendPassword = async (req, res, next) => {
             .json({ error: "correo no enviado", message: error });
         } else {
           //** ENCRIPTAMOS CONTRASEÑA para actualizar al user con esta contraseña encriptada */
+          //^ ACTUALIZANDO EL MODELO
           const newPasswordEncript = bcrypt.hashSync(passwordSecure, 10);
 
           try {
             // Intentamos actualizar el user
+             //^ ACTUALIZANDO EL MODELO
             await User.findByIdAndUpdate(id, { password: newPasswordEncript });
 
             // todo --> TEST comprobar que el user se ha actualizado correctamente
@@ -555,6 +587,7 @@ const sendPassword = async (req, res, next) => {
             const userUpdate = await User.findById(id);
 
             // Compruebo la nueva contraseña segura con la contraseña encriptada que tiene el user guardado actualizado
+            //^ DESENCRIPTANDO LAS CONTRASEÑAS CON EL BCRYPT
             if (bcrypt.compareSync(passwordSecure, userUpdate.password)) {
               // si es true se ha actualizado de forma correcta
               return res.status(200).json({
@@ -625,13 +658,12 @@ const changePassword = async (req, res, next) => {
   try {
     // Recogemos del body la contraseña antigua y nueva
     const { password, newPassword } = req.body;
-
     // Tenemos que comprobar que la contraseña sea fuerte (strongPassword) mediante validator
-
     const validate = validator.isStrongPassword(newPassword);
-
     if (validate) {
       // Sacamos el id del usuario (esta autenticado --> req.user)
+      //^ al autenticar, se va al modelo QUE HEMOS CREADO EN EL AUTH MIDDLEWARE. 
+      //^ TIENE QUE IR CON EL MISMO NOMBRE QUE EL AUTH
       const { _id } = req.user;
 
       // Comprobamos que la contraseña que introduce antigua coincide con la guardada en la base de datos

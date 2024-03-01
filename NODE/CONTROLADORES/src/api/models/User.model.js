@@ -2,8 +2,10 @@
 const mongoose = require("mongoose");
 
 //! ----------- importamos diferentes librerías
+//^ para las ecnriptaciones de contraseñas, librería de NODE
+const bcrypt = require("bcrypt"); // ---- sirve para encriptar  
+//^ para poder validar el e-mail y la contraseña, librería de NODE
 
-const bcrypt = require("bcrypt"); // ---- sirve para encriptar
 const validator = require("validator"); // ----- nos valida info
 
 //! ----------- schema datos
@@ -12,7 +14,7 @@ const validator = require("validator"); // ----- nos valida info
 
 const UserSchema = new mongoose.Schema(
   {
-    email: {
+    email: { 
       type: String,
       required: true,
       trim: true, // quitar espacios
@@ -78,7 +80,8 @@ const UserSchema = new mongoose.Schema(
   }
 );
 
-//! hacemos un preguardado donde se va a encriptar la contraseña
+//! hacemos un preguardado donde se va a encriptar la contraseña. Cada vez que llames a 
+//^ "save" se va a ejecutar esto como previa a la ejecución
 
 //^ USAMOS BCRYPT PARA EL ENCRIPTADO
 UserSchema.pre("save", async function (next) {

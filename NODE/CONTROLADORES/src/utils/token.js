@@ -39,7 +39,7 @@ const verifyToken = (token) => {
 //^ SI TENEMOS EL TOKEN, LO VERIFICAMOS CON EL MÉTODO VERIFY DE jsonwebtoken
 //^QUE USARÁ EL TOKEN Y LA JXT_SECRET PARA DECODIFICAR Y DEVOLVERNOS EL ID Y EL EMAIL
 //^CON EL QUE LO CREAMOS
-  return jwt.verify(token, process.env.JWT_SECRET);
+  return jwt.verify(token, process.env.JWT_SECRET); 
 };
 
 //! exportamos

@@ -2,7 +2,7 @@ const { isAuth, isAuthAdmin } = require("../../middleware/auth.middleware");
 const { upload } = require("../../middleware/files.middleware");
 const {
   registerLargo,
-  registerWithRedirect,
+  registerWithRedirect, 
   sendCode,
   resendCode,
   checkNewUser,
@@ -23,15 +23,22 @@ UserRoutes.post("/registerLargo", upload.single("image"), registerLargo);
 UserRoutes.post(
   "/registerRedirect",
   upload.single("image"),
-  registerWithRedirect
+  registerWithRedirect 
 ); // redirect sendCode
+// ----------------- Controladores usados por redirect
+UserRoutes.post("/register/sendMail/:id", sendCode);
+//^ EL ID ES EL DEL USUARIO
+UserRoutes.patch("/forgot/sendPassword/:id", sendPassword);
 
+
+ 
 UserRoutes.post("/resend", resendCode);
-UserRoutes.post("/check", checkNewUser);
+
 
 UserRoutes.post("/login", login);
 UserRoutes.post("/autoLogin", autoLogin);
-
+//^ NOS REDIRIGE A LA RUTA DE SENDPASSWORD CON EL CONTROLADOR SENDPASSWORD 
+//^   QUE HEMSO DEFINIDO EN EL USER CONTROLLER
 UserRoutes.patch("/forgotPassword", forgotPassword); // redirect sendPassword
 
 //! ------ RUTAS AUTENTICADAS ------
@@ -44,8 +51,5 @@ UserRoutes.patch("/update", [isAuth], upload.single("image"), updateUser);
 UserRoutes.delete("/delete", [isAuth], deleteUser);
 UserRoutes.patch("/addLikeMovie/:idMovie", [isAuth], addFavMovie);
 
-// ----------------- Controladores usados por redirect
-UserRoutes.post("/register/sendMail/:id", sendCode);
-UserRoutes.patch("/forgot/sendPassword/:id", sendPassword);
 
 module.exports = UserRoutes;

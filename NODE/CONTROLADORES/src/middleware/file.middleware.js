@@ -25,6 +25,7 @@ const upload = multer({ storage });
 
 //!------------ FUNCIÓN DE BORRADO DE IMAGENES EN CLOUDINARY
 //^ esto lo usamos en el controller
+ //^ CORTÁNDOLO ENTRE EL 7 Y EL PUNTO
 const deleteImgCloudinary = (imgUrl) => {
   const imgSplited = imgUrl.split("/");
   const nameSplited = imgSplited[imgSplited.length - 1].split(".");
