@@ -61,7 +61,7 @@ const getByIdMultas = async (req, res, next) => {
 const getByPagadaMultas = async (req, res, next) => {
   try {
     const { Pagada } = req.params;
-    const MultasByPagada = await Multas.find({ Pagada }).populate("Coches");
+    const MultasByPagada = await Multas.find({ Pagada }).populate("Coches Conductores");
     if (MultasByPagada.length !== 0 ){
       return res.status(200).json(MultasByPagada);
     } else {
