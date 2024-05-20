@@ -1,5 +1,6 @@
 import './App.css'
 import React from "react";
+import {use} from "react"
 import {Image, Paragraph, Title, Subtitle, Header, Main, Footer} from "./components"
 import { Outlet } from "react-router-dom";
 function App() {
@@ -9,8 +10,6 @@ function App() {
     <>
      <Image source="https://reactjs.org/logo-og.png" FreeTextalt="React Image"/>
      <Paragraph FreeText="Free Text"/>
-
-
      <Header> 
         <Title FreeText={"Titulo"} />
       </Header>
