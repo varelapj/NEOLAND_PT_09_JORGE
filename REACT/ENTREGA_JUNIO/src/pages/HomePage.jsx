@@ -45,7 +45,7 @@ export const HomePage = () => {
   useEffect(() => {
     const encontrarConductor = () => {
       const conductorEncontrado = conductores.find(conductor => conductor.Email === user.correo);
-//* PARA SU IMAGEN EN LA FOTO DE PERFIL
+      //* PARA SU IMAGEN EN LA FOTO DE PERFIL
       if (conductorEncontrado) {
         setConductor(conductorEncontrado);
         setFotoPerfil(conductorEncontrado.Imagen);
@@ -53,35 +53,33 @@ export const HomePage = () => {
         console.log('Conductor no encontrado');
       }
     };
-//* Y SI HAY CONDUCTOR, PUES SE LLAMA A LA FUNCIÓN
+    //* Y SI HAY CONDUCTOR, PUES SE LLAMA A LA FUNCIÓN
     if (conductores.length > 0) {
       encontrarConductor();
     }
   }, [conductores, user.correo]);
 
- //*FILTRAMOS SUS COCHES Y SUS MULTAS OCN EL ID QUE COGIMOS A TRAVÉS DEL CORREO Y OBTENEMOS
- //* TODOS LSO DARTOS DE LOS COCHES Y LAS MULTAS QUE LUEGO MAPEAREMOS ABAJO
+  //* FILTRAMOS SUS COCHES Y SUS MULTAS CON EL ID QUE COGIMOS A TRAVÉS DEL CORREO Y OBTENEMOS
+  //* TODOS LOS DATOS DE LOS COCHES Y LAS MULTAS QUE LUEGO MAPEAREMOS ABAJO
   const cochesConductor = coches.filter(coche => coche.Conductores.includes(conductor?._id));
   const multasConductor = multas.filter(multa => multa.Conductores.includes(conductor?._id));
 
-//* GENERAMSO UNA FUNCIÓ NQUE RECIBE PRO PARAMETORS EL ID DEL COCHE DE ARRIBA Y VAMOS AL ENDPOITN
-//* A BORRAR EL COCHE CON ESE ID Y LUEGO ACTUALIZAMOS LA LISTA A PINTAR
+  //* GENERAMOS UNA FUNCIÓN QUE RECIBE POR PARÁMETRO EL ID DEL COCHE DE ARRIBA Y VAMOS AL ENDPOINT
+  //* A BORRAR EL COCHE CON ESE ID Y LUEGO ACTUALIZAMOS LA LISTA A PINTAR
   const borrarCoche = async (idCoche) => {
     try {
       await axios.delete(`http://localhost:8081/api/v1/coches/borrar-coches/${idCoche}`);
-
-      setCochesConductor(cochesConductor.filter(coche => coche._id !== idCoche));
+      window.location.reload(); 
     } catch (error) {
       console.error('Error al eliminar el coche:', error);
     }
   };
-
    return (
     //* PINTAMOS EL HEADER
     <div>
       <header className="header">
         <div className="left-section">
-          {/* //* CON UN LOGO QUE NOS LLEVA A HOME */}
+          {/* CON UN LOGO QUE NOS LLEVA A HOME */}
           <Link to="/autorizado/home">
             <img 
               src="https://res.cloudinary.com/dx8p4o1ak/image/upload/v1718014262/ENTREGA_MARZO/Captura_de_pantalla_2024-06-07_201352_u5tiog.png" 
@@ -92,7 +90,7 @@ export const HomePage = () => {
           <p className="logo-text">mitráfico</p>
         </div>
         <div className="right-section">
-          {/* //* CON UN LOGO QUE NOS LLEVA A PERFIL */}
+          {/* CON UN LOGO QUE NOS LLEVA A PERFIL */}
           <Link to="/autorizado/profile">
             <img 
               src={fotoPerfil || 'URL_POR_DEFECTO_SI_NO_HAY_IMAGEN'}
@@ -100,7 +98,7 @@ export const HomePage = () => {
               className="fotoperfil"
             />
             <br />
-            {/* //* CON UN BOTÓN DE LOGOUT QUE VIENE DEL CONTEXTO USEAUTH*/}
+            {/* CON UN BOTÓN DE LOGOUT QUE VIENE DEL CONTEXTO USEAUTH*/}
             <button id="botonlogout" key={"logout"} onClick={logout}>
               Cerrar Sesión
             </button>
@@ -139,7 +137,7 @@ export const HomePage = () => {
               <li key={multa._id}>
                 ID: {multa._id} - {multa.Tipo} - {new Date(multa.Fecha).toLocaleDateString()} - {multa.Calle} - ${multa.Importe} - 
                {/* {/* //* SI ESTA PAGADA PONEMOS UNA IMAGEN, SI NO, UN BOTÓN DE ENLACE A PAGAR */}
-               Pagada: {multa.Pagada} {multa.Pagada === 'Si' ? <PaidImage src="https://res.cloudinary.com/dx8p4o1ak/image/upload/v1718125123/istockphoto-1204658131-612x612_jocsbs.jpg" alt="Pago realizado" /> : <Button onClick={() => pagarMulta(multa._id)}>Pagar multa</Button>} 
+               Pagada: {multa.Pagada} {multa.Pagada === 'Si' ? <PaidImage src="https://res.cloudinary.com/dx8p4o1ak/image/upload/v1718125123/istockphoto-1204658131-612x612_jocsbs.jpg" alt="Pago realizado" /> : <Button><Link to="/autorizado/multas">Pagar multa</Link></Button>} 
               </li>
             ))}
           </ul>

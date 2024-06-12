@@ -16,7 +16,7 @@ export const HomeLayout = () => {
 
   return (
     <div>
-            {/* / la barra escomún a todos */}
+      
 {/* //* un array de rutas tipo objeto que tendrá su dirección y su label */}
   
        {/* //* aquí la página  que quieras renderizara través del outlet.
