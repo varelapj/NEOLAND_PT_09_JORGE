@@ -1,0 +1,222 @@
+/* app.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  color: #00008B; /* Azul oscuro para el texto */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: auto; /* Ajusta el tamaño según sea necesario */
+  height: auto;
+  margin-right: 10px;
+}
+
+.logo-text {
+  font-size: 50px;
+  color:#00008B /* Ajusta el tamaño según sea necesario */
+}
+
+.right-section {
+  font-size: 14px; /* Ajusta el tamaño según sea necesario */
+}
+
+
+#logoentrada{
+  margin-top: 175px;
+}
+h2{
+  font-size: 24px;
+}
+input{
+margin:15px;
+}
+#linkregistro{
+  margin-top: 200px;
+}
+#botonentrar{
+  margin:15px;
+  font-size:20px;
+}
+
+  #tituloinicio{
+  font-size: 88px;
+color:#04264d;
+
+}
+  #root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1em;
+  border-radius: 5px;
+}
+
+
+
+.form-group label {
+  width: 150px; 
+  text-align: left;
+}
+
+
+
+button:hover {
+  background-color: #0056b3;
+}
+
+p {
+  color: red;
+  font-size: 0.8em;
+  margin-top: 0.5em;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* app.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  color: #00008B; /* Azul oscuro para el texto */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+}
+
+.logo, .fotoperfil {
+  width: 75px; /* Ajusta el tamaño según sea necesario */
+  height: 75px; 
+  margin-right: 10px;
+}
+
+.fotoperfil {
+  border-radius: 50%; /* Hace que la imagen sea circular */
+  border: 5px solid #00008B; /* Añade un borde azul oscuro */
+}
+
+.logo-text {
+  font-size: 40px; /* Ajusta el tamaño según sea necesario */
+  color: #00254a;
+}
+
+.right-section {
+  font-size: 14px; /* Ajusta el tamaño según sea necesario */
+}
+
+#botonlogout{
+
+ background-color: white;
+ border-color: white;
+ box-shadow: white;
+}
+
+#botonentrar{background-color: grey; 
+border: none; /* Sin borde */
+color: white; /* Color del texto */
+padding: 15px 32px; /* Relleno */
+text-align: center; /* Alineación del texto */
+text-decoration: none; /* Sin subrayado */
+display: inline-block; /* Elemento en línea */
+font-size: 16px; /* Tamaño de la fuente */
+margin: 4px 2px; /* Margen */
+cursor: pointer; /* Cursor de puntero */
+border-radius: 4px; /* Bordes redondeados */}
+
+
+#botonentrar:hover {
+  background-color: #45a049; /* Color de fondo al pasar el ratón */
+}
+
+.fotoperfil {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+
+ul {
+  list-style-type: none;
+}
+
+.perfil-detalles {
+  padding: 20px;
+}
+
+.perfil-imagen-grande {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.fotoperfil-grande {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.detalle {
+  margin-bottom: 10px;
+}
